@@ -1,9 +1,10 @@
 import socket
 import settings
 import pyfiglet
+from consolebar import ConsoleBar
+global tgt
 
 settings.clear()
-
 
 # --------------------------------------------------------------------------------
 #  ____        _   _                    ____
@@ -21,8 +22,9 @@ class proj_info:
     description = 'Python Scanner is a simple port scanning application written in python'
 
 
-pyfiglet.print_figlet(proj_info.title)
-settings.breakline(75)
+# prints the home screen
+def home_screen():
+    pyfiglet.print_figlet(proj_info.title)
 
 
 class target:
@@ -31,23 +33,39 @@ class target:
         self.ip = socket.gethostbyname(hostname)
 
 
-print('Enter a hostname')
-raw = input(' >> ')
-tgt = target(raw)
+def target_acquisition():
+    print('Enter a hostname')
+    raw = input(' >> ')
+    global tgt
+    tgt = target(raw)
 
 
 def scanner():
-    for port in range(75, 85):
+    open_list = []
+
+    for port in ConsoleBar(range(69, 200)):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(2)
+        sock.settimeout(0.05)
         result = sock.connect_ex((tgt.ip, port))
 
         if result == 0:
-            print("Port {}: Open".format(port))
+            open_list.append("Port {}: Open".format(port))
 
-        else:
-            print("Port {}: Closed".format(port))
             sock.close()
 
+    def report():
+        print(open_list)
+        input('Press any key to continue...')
+        settings.clear()
 
-scanner()
+    report()
+
+
+def main_loop():
+    home_screen()
+    target_acquisition()
+    scanner()
+    main_loop()
+
+
+main_loop()
