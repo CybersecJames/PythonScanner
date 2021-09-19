@@ -10,8 +10,8 @@ def clear():
 
 
 # break line
-def break_line(x):
-    print('-' * x)
+def break_line(dashes):
+    print('-' * dashes)
 
 
 class banner:

@@ -1,10 +1,15 @@
+from __future__ import print_function
+
 import socket
-import settings
+import settings as hf
 import pyfiglet
 from consolebar import ConsoleBar
+
 global tgt
 
-settings.clear()
+hf.break_line(80)
+hf.clear()
+
 
 # --------------------------------------------------------------------------------
 #  ____        _   _                    ____
@@ -16,6 +21,7 @@ settings.clear()
 # --------------------------------------------------------------------------------
 
 
+# basic project info
 class proj_info:
     title = 'Python Scanner'
     dev = 'James Montrief'
@@ -25,42 +31,69 @@ class proj_info:
 # prints the home screen
 def home_screen():
     pyfiglet.print_figlet(proj_info.title)
+    hf.break_line(80)
 
 
+# defining the target class
 class target:
     def __init__(self, hostname):
         self.hostname = hostname
         self.ip = socket.gethostbyname(hostname)
 
 
+# getting the target
 def target_acquisition():
-    print('Enter a hostname')
+    print('\nEnter a hostname (e.g. abc.com) : \n')
     raw = input(' >> ')
     global tgt
     tgt = target(raw)
+    hf.clear()
+    home_screen()
+    print('\nScanning: ' + raw)
+    print('IP address: ' + tgt.ip + '\n')
+    hf.break_line(80)
+    print(' ')
 
 
+# the scanning engine
 def scanner():
-    open_list = []
+    open_ports = []
 
-    for port in ConsoleBar(range(69, 200)):
+    for port in ConsoleBar(range(60, 100)):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(0.05)
+        sock.settimeout(0.2)
         result = sock.connect_ex((tgt.ip, port))
 
         if result == 0:
-            open_list.append("Port {}: Open".format(port))
+            try:
+                service = socket.getservbyport(port)
+                open_ports.append("Port {}  | Open".format(port) + '     | ' + service)
+
+            except:
+                open_ports.append("Port {}  | Open   ".format(port) + '  | ')
 
             sock.close()
 
+    # printing the report
     def report():
-        print(open_list)
-        input('Press any key to continue...')
-        settings.clear()
+        hf.clear()
+        home_screen()
+
+        print('Target: ' + tgt.hostname)
+        print('IP address: ' + tgt.ip + '\n')
+        hf.break_line(80)
+        print('Port       ' + 'Status    ' + 'Service ')
+        hf.break_line(25)
+        print(*open_ports, sep='\n')
+        hf.break_line(80)
+
+        input('\nPress any key to continue...')
+        hf.clear()
 
     report()
 
 
+# defining the main loop
 def main_loop():
     home_screen()
     target_acquisition()
