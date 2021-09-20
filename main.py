@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import random
 import socket
-import time
 
 import settings as hf
 import pyfiglet
@@ -67,19 +66,25 @@ class target:
 def target_acquisition():
     print('\nEnter a hostname (e.g. abc.com) : \n')
     raw = input(' >> ')
+
+    # '99' resets the program
     if raw == '99':
         hf.clear()
         main()
+
+    #
     else:
         global tgt
         try:
+            # turns the raw target
             tgt = target(raw)
             hf.clear()
             mini_banner()
-            print('\nScanning: ' + raw)
+            print('\nTarget: ' + raw)
             print('IP address: ' + tgt.ip + '\n')
             hf.break_line(80)
-            print(' ')
+            scanner()
+
         except:
             main()
 
@@ -87,9 +92,14 @@ def target_acquisition():
 # the scanning engine
 def scanner():
     open_ports = []
+    starting_port = int(input('Enter the starting port: '))
+    ending_port = int(input('Enter ending port: '))
 
-    starting_port = 80
-    ending_port = 250
+    hf.clear()
+
+    mini_banner()
+    print('\nScanning target: ' + tgt.hostname)
+    print('IP address: ' + tgt.ip + '\n')
 
     for port in ConsoleBar(range(starting_port, ending_port)):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
