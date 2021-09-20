@@ -1,6 +1,6 @@
 # Python Scanner
 ___
-###### Developed by: James Montrief and Holli Sweet
+###### Developed by: James Montrief
 ___
 
 **PythonScanner is simple port scanning application written in the Python programming language.**
