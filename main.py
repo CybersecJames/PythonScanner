@@ -47,8 +47,7 @@ def home_screen():
     randomizer()
 
 
-
-
+# similar to main banner, but removes the project information
 def mini_banner():
     pyfiglet.print_figlet(proj_info.title, font='doom', colors='GREEN')
     hf.break_line(80)
@@ -89,12 +88,12 @@ def scanner():
     t1 = time.time()
     open_ports = []
 
-    starting_port = 75
-    ending_port = 100
+    starting_port = 80
+    ending_port = 443
 
     for port in ConsoleBar(range(starting_port, ending_port)):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(0.2)
+        sock.settimeout(0.15)
         result = sock.connect_ex((tgt.ip, port))
 
         if result == 0:
