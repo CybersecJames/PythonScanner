@@ -28,7 +28,5 @@ ___
 
 
 #### Dependencies:
-- [Python 3.9](https://www.python.org/downloads/) or later 
-- [pyfiglet](https://github.com/pwaller/pyfiglet)
-- [consolebar 1.2](https://pypi.org/project/consolebar/)
+- listed in [requirements.txt](requirements.txt)
 
