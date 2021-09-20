@@ -1,5 +1,4 @@
 from __future__ import print_function
-
 import socket
 import settings as hf
 import pyfiglet
@@ -76,29 +75,37 @@ def scanner():
 
     # printing the report
     def report():
+        # clear the screen and print the main screen
         hf.clear()
         home_screen()
 
+        # print out target and ip
         print('Target: ' + tgt.hostname)
-        print('IP address: ' + tgt.ip + '\n')
-        hf.break_line(80)
-        print('Port       ' + 'Status    ' + 'Service ')
-        hf.break_line(25)
-        print(*open_ports, sep='\n')
+        print('IP address: ' + tgt.ip)
+
+        # header
+        print('\nPort       ' + 'Status    ' + 'Service ')
         hf.break_line(80)
 
+        # printing the open_ports list
+        print(*open_ports, sep='\n')
+
+        hf.break_line(80)
+
+        # exit
         input('\nPress any key to continue...')
         hf.clear()
 
     report()
 
 
-# defining the main loop
-def main_loop():
+# main loop
+def main():
     home_screen()
     target_acquisition()
     scanner()
-    main_loop()
+    main()
 
 
-main_loop()
+if __name__ == '__main__':
+    main()
