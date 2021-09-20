@@ -2,11 +2,14 @@ from __future__ import print_function
 
 import random
 import socket
+import time
+
 import settings as hf
 import pyfiglet
 from consolebar import ConsoleBar
 
 global tgt
+global timer
 
 hf.clear()
 
@@ -64,6 +67,7 @@ def target_acquisition():
         hf.clear()
         main()
     else:
+        t1 = time.time()
         global tgt
         try:
             tgt = target(raw)
@@ -79,6 +83,7 @@ def target_acquisition():
 
 # the scanning engine
 def scanner():
+    t1 = time.time()
     open_ports = []
 
     starting_port = 75
@@ -97,36 +102,38 @@ def scanner():
             except:
                 open_ports.append("Port {}  | Open   ".format(port) + '  | ')
 
+            t2 = time.time()
+            global timer
+            timer = round(t2 - t1, 2)
+
             sock.close()
 
     # printing the report
     def report():
         hf.clear()
 
+        print("REPORT: ")
+
         def report_data():
             hf.break_line(80)
-            hostname_report =   'Target:                ' + tgt.hostname
-            ip_report =         'IP address:            ' + tgt.ip
-            fqdn_report =       'FQDN:                  ' + tgt.fqdn
+            hostname_report =   'Target:           ' + tgt.hostname
+            ip_report =         'IP address:       ' + tgt.ip
+            fqdn_report =       'FQDN:             ' + tgt.fqdn
 
             print(hostname_report + '\n' + ip_report + '\n' + fqdn_report)
+            print('Port range:       ' + str(starting_port) + ' - ' + str(ending_port))
+            print('\nScanning finished in ' + str(timer) + ' seconds\n')
+            print('\nPort       ' + 'Status    ' + 'Service ')
+            hf.break_line(80)
 
-        print("REPORT: ")
+            print(*open_ports, sep='\n')
+
         report_data()
-
-        print('Port range:            ' + str(starting_port) + ' - ' + str(ending_port))
-
-        # header
-        print('\nPort       ' + 'Status    ' + 'Service ')
-        hf.break_line(80)
-
-        # printing the open_ports list
-        print(*open_ports, sep='\n')
 
         hf.break_line(80)
 
         # exit
-        input('\nPress any key to continue...')
+        input('\n' * 5 + 'Press any key to continue...')
         hf.clear()
 
     report()
