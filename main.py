@@ -72,7 +72,7 @@ def target_acquisition():
         hf.clear()
         main()
 
-    #
+    # carry on
     else:
         global tgt
         try:
