@@ -53,6 +53,7 @@ class target:
     def __init__(self, hostname):
         self.hostname = hostname
         self.ip = socket.gethostbyname(hostname)
+        self.fqdn = socket.getfqdn(hostname)
 
 
 # getting the target
@@ -80,7 +81,10 @@ def target_acquisition():
 def scanner():
     open_ports = []
 
-    for port in ConsoleBar(range(60, 100)):
+    starting_port = 75
+    ending_port = 100
+
+    for port in ConsoleBar(range(starting_port, ending_port)):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(0.2)
         result = sock.connect_ex((tgt.ip, port))
@@ -97,13 +101,20 @@ def scanner():
 
     # printing the report
     def report():
-        # clear the screen and print the main screen
         hf.clear()
-        mini_banner()
 
-        # print out target and ip
-        print('Target: ' + tgt.hostname)
-        print('IP address: ' + tgt.ip)
+        def report_data():
+            hf.break_line(80)
+            hostname_report =   'Target:                ' + tgt.hostname
+            ip_report =         'IP address:            ' + tgt.ip
+            fqdn_report =       'FQDN:                  ' + tgt.fqdn
+
+            print(hostname_report + '\n' + ip_report + '\n' + fqdn_report)
+
+        print("REPORT: ")
+        report_data()
+
+        print('Port range:            ' + str(starting_port) + ' - ' + str(ending_port))
 
         # header
         print('\nPort       ' + 'Status    ' + 'Service ')
