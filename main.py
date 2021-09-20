@@ -40,10 +40,13 @@ def home_screen():
         random_font = random.choice(fonts)
         random_color = random.choice(colors)
         pyfiglet.print_figlet(proj_info.title, font=random_font, colors=random_color)
+        hf.break_line(80)
+        print(proj_info.title + ' | Developed by: ' + proj_info.dev)
+        hf.break_line(80)
 
     randomizer()
 
-    hf.break_line(80)
+
 
 
 def mini_banner():
