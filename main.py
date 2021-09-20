@@ -1,4 +1,6 @@
 from __future__ import print_function
+
+import random
 import socket
 import settings as hf
 import pyfiglet
@@ -6,7 +8,6 @@ from consolebar import ConsoleBar
 
 global tgt
 
-hf.break_line(80)
 hf.clear()
 
 
@@ -29,7 +30,21 @@ class proj_info:
 
 # prints the home screen
 def home_screen():
-    pyfiglet.print_figlet(proj_info.title)
+    def randomizer():
+        fonts = ['doom']
+        colors = ['GREEN']
+
+        random_font = random.choice(fonts)
+        random_color = random.choice(colors)
+        pyfiglet.print_figlet(proj_info.title, font=random_font, colors=random_color)
+
+    randomizer()
+
+    hf.break_line(80)
+
+
+def mini_banner():
+    pyfiglet.print_figlet(proj_info.title, font='doom', colors='GREEN')
     hf.break_line(80)
 
 
@@ -44,14 +59,21 @@ class target:
 def target_acquisition():
     print('\nEnter a hostname (e.g. abc.com) : \n')
     raw = input(' >> ')
-    global tgt
-    tgt = target(raw)
-    hf.clear()
-    home_screen()
-    print('\nScanning: ' + raw)
-    print('IP address: ' + tgt.ip + '\n')
-    hf.break_line(80)
-    print(' ')
+    if raw == '99':
+        hf.clear()
+        main()
+    else:
+        global tgt
+        try:
+            tgt = target(raw)
+            hf.clear()
+            mini_banner()
+            print('\nScanning: ' + raw)
+            print('IP address: ' + tgt.ip + '\n')
+            hf.break_line(80)
+            print(' ')
+        except:
+            main()
 
 
 # the scanning engine
@@ -77,7 +99,7 @@ def scanner():
     def report():
         # clear the screen and print the main screen
         hf.clear()
-        home_screen()
+        mini_banner()
 
         # print out target and ip
         print('Target: ' + tgt.hostname)
