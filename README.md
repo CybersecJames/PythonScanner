@@ -25,3 +25,10 @@ ___
 - Uses the sockets() module to scan ports for the given hostname.
 - Returns hostname, IP address, FQDN, and the status of ports that have been scanned. 
 - Default port range is 20-450
+
+
+#### Dependencies:
+- [Python 3.9](https://www.python.org/downloads/) or later 
+- [pyfiglet](https://github.com/pwaller/pyfiglet)
+- [consolebar 1.2](https://pypi.org/project/consolebar/)
+

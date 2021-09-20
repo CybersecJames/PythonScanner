@@ -33,6 +33,8 @@ class proj_info:
 
 # prints the home screen
 def home_screen():
+    hf.clear()
+
     def randomizer():
         fonts = ['doom']
         colors = ['GREEN']
@@ -69,7 +71,6 @@ def target_acquisition():
         hf.clear()
         main()
     else:
-        t1 = time.time()
         global tgt
         try:
             tgt = target(raw)
@@ -85,15 +86,14 @@ def target_acquisition():
 
 # the scanning engine
 def scanner():
-    t1 = time.time()
     open_ports = []
 
     starting_port = 80
-    ending_port = 443
+    ending_port = 250
 
     for port in ConsoleBar(range(starting_port, ending_port)):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(0.15)
+        sock.settimeout(0.12)
         result = sock.connect_ex((tgt.ip, port))
 
         if result == 0:
@@ -103,10 +103,6 @@ def scanner():
 
             except:
                 open_ports.append("Port {}  | Open   ".format(port) + '  | ')
-
-            t2 = time.time()
-            global timer
-            timer = round(t2 - t1, 2)
 
             sock.close()
 
@@ -124,7 +120,7 @@ def scanner():
 
             print(hostname_report + '\n' + ip_report + '\n' + fqdn_report)
             print('Port range:       ' + str(starting_port) + ' - ' + str(ending_port))
-            print('\nScanning finished in ' + str(timer) + ' seconds\n')
+
             print('\nPort       ' + 'Status    ' + 'Service ')
             hf.break_line(80)
 

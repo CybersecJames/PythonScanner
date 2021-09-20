@@ -1,9 +1,7 @@
 from os import system
 
 
-# clear
 import pyfiglet
-
 
 def clear():
     system("clear")
