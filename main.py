@@ -124,9 +124,9 @@ def scanner():
 
         def report_data():
             hf.break_line(80)
-            hostname_report =   'Target:           ' + tgt.hostname
-            ip_report =         'IP address:       ' + tgt.ip
-            fqdn_report =       'FQDN:             ' + tgt.fqdn
+            hostname_report = 'Target:           ' + tgt.hostname
+            ip_report = 'IP address:       ' + tgt.ip
+            fqdn_report = 'FQDN:             ' + tgt.fqdn
 
             print(hostname_report + '\n' + ip_report + '\n' + fqdn_report)
             print('Port range:       ' + str(starting_port) + ' - ' + str(ending_port))
@@ -156,4 +156,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except:
+        print('Something has gone wrong. Please alert the developers by creating an issue on GitHub.')

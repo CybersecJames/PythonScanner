@@ -1,3 +1,2 @@
 pyfiglet~=0.8.post1
 consolebar~=1.2
-setuptools~=57.4.0
