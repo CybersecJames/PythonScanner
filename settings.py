@@ -1,7 +1,7 @@
 from os import system
 
-
 import pyfiglet
+
 
 def clear():
     system("clear")
@@ -23,14 +23,4 @@ class banner:
 title = 'Python Scanner'
 description = 'Python Scanner is a simple port scanning application written in python'
 
-
 ban = banner('Main Banner', title, description)
-
-
-
-
-
-
-
-
-
