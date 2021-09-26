@@ -1,0 +1,270 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "system",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "socket",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "socket",
+        "description": "socket",
+        "detail": "socket",
+        "documentation": {}
+    },
+    {
+        "label": "pyfiglet",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pyfiglet",
+        "description": "pyfiglet",
+        "detail": "pyfiglet",
+        "documentation": {}
+    },
+    {
+        "label": "ConsoleBar",
+        "importPath": "consolebar",
+        "description": "consolebar",
+        "isExtraImport": true,
+        "detail": "consolebar",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "settings",
+        "description": "settings",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.9/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)",
+        "detail": "venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.9/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]",
+        "detail": "venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.9/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.9/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"../lib/python3.9/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "proj_info",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class proj_info:\n    title = 'Python Scanner'\n    dev = 'James Montrief'\n    description = 'Python Scanner is a simple port scanning application written in python'\n# prints the home screen\ndef home_screen():\n    hf.clear()\n    def randomizer():\n        fonts = ['doom']\n        colors = ['GREEN']",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "target",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class target:\n    def __init__(self, hostname):\n        self.hostname = hostname\n        self.ip = socket.gethostbyname(hostname)\n        self.fqdn = socket.getfqdn(hostname)\n# getting the target\ndef target_acquisition():\n    print('\\nEnter a hostname (e.g. abc.com) : \\n')\n    raw = input(' >> ')\n    # '99' resets the program",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "home_screen",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def home_screen():\n    hf.clear()\n    def randomizer():\n        fonts = ['doom']\n        colors = ['GREEN']\n        random_font = random.choice(fonts)\n        random_color = random.choice(colors)\n        pyfiglet.print_figlet(proj_info.title, font=random_font, colors=random_color)\n        hf.break_line(80)\n        print(proj_info.title + ' | Developed by: ' + proj_info.dev)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "mini_banner",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def mini_banner():\n    pyfiglet.print_figlet(proj_info.title, font='doom', colors='GREEN')\n    hf.break_line(80)\n# defining the target class\nclass target:\n    def __init__(self, hostname):\n        self.hostname = hostname\n        self.ip = socket.gethostbyname(hostname)\n        self.fqdn = socket.getfqdn(hostname)\n# getting the target",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "target_acquisition",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def target_acquisition():\n    print('\\nEnter a hostname (e.g. abc.com) : \\n')\n    raw = input(' >> ')\n    # '99' resets the program\n    if raw == '99':\n        hf.clear()\n        main()\n    # carry on\n    else:\n        global tgt",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "scanner",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def scanner():\n    open_ports = []\n    starting_port = int(input('Enter the starting port: '))\n    ending_port = int(input('Enter ending port: '))\n    hf.clear()\n    mini_banner()\n    print('\\nScanning target: ' + tgt.hostname)\n    print('IP address: ' + tgt.ip + '\\n')\n    for port in ConsoleBar(range(starting_port, ending_port)):\n        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    home_screen()\n    target_acquisition()\n    scanner()\n    main()\nif __name__ == '__main__':\n    try:\n        main()\n    except:\n        print('Something has gone wrong. Please alert the developers by creating an issue on GitHub.')",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "banner",
+        "kind": 6,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "class banner:\n    def __init__(self, name, header, message):\n        self.name = name\n        self.header = header\n        self.message = message\n        self.display = pyfiglet.print_figlet(title)\ntitle = 'Python Scanner'\ndescription = 'Python Scanner is a simple port scanning application written in python'\nban = banner('Main Banner', title, description)",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "clear",
+        "kind": 2,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "def clear():\n    system(\"clear\")\n# break line\ndef break_line(dashes):\n    print('-' * dashes)\nclass banner:\n    def __init__(self, name, header, message):\n        self.name = name\n        self.header = header\n        self.message = message",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "break_line",
+        "kind": 2,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "def break_line(dashes):\n    print('-' * dashes)\nclass banner:\n    def __init__(self, name, header, message):\n        self.name = name\n        self.header = header\n        self.message = message\n        self.display = pyfiglet.print_figlet(title)\ntitle = 'Python Scanner'\ndescription = 'Python Scanner is a simple port scanning application written in python'",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "title",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "title = 'Python Scanner'\ndescription = 'Python Scanner is a simple port scanning application written in python'\nban = banner('Main Banner', title, description)",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "description",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "description = 'Python Scanner is a simple port scanning application written in python'\nban = banner('Main Banner', title, description)",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "ban",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "ban = banner('Main Banner', title, description)",
+        "detail": "settings",
+        "documentation": {}
+    }
+]
