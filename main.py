@@ -22,7 +22,7 @@ import settings as hf
 class proj_info:
     title = 'Python Scanner'
     dev = 'James Montrief'
-    description = 'Python Scanner is a simple port scanning application written in python.'
+    description = 'Python Scanner is a simple port-scanning application written in python.'
 
 
 # ---------------------------------------- BANNERS -------------------------------------------- #
