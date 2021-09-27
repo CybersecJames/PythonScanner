@@ -100,23 +100,33 @@ def recon_target():
     simple_banner()
     start_port_prompt = '\nEnter the starting port: '
     start_port = int(input(start_port_prompt + '\n  >>  '))
+
     hf.clear()
 
     # ending port
     simple_banner()
     end_port_prompt = '\nEnter the ending port: '
     end_port = int(input(end_port_prompt + '\n  >>  '))
+
     hf.clear()
+
+    if start_port > end_port:
+        recon_target()
 
     # socket timeout
     simple_banner()
-    sock_timeout_prompt = '\nEnter the scan speed: \n  1 - Fastest \n  2 - Medium \n  3 - Slow\n'
+    sock_timeout_prompt = '''Enter the scanning speed: 
+    1 - Fastest 
+    2 - Medium   
+    3 - Slow
+    '''
+
     sock_timeout = int(input(sock_timeout_prompt + '\n  >>  '))
     hf.clear()
 
     def wait_screen():
         simple_banner()
-        message = 'Conducting reconnaissance of the target, please wait...'
+        message = 'Starting reconnaissance of the target, please wait...'
         print(message)
 
     wait_screen()
@@ -181,7 +191,7 @@ def recon_target():
         print(hf.break_line)
 
         # exit
-        rerun = input('\n' * 3 + 'Press [ENTER] to run another scan, or type "exit" to quit.\n')
+        rerun = input('\n' * 3 + 'Press [ENTER] to run another scan, or type "exit" to quit.\n \n')
 
         if rerun == 'exit':
             hf.clear()
