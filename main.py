@@ -1,6 +1,7 @@
 # import statements
 import socket
-
+os.system("pip install consolebar")
+os.system("pip install pyfiglet")
 import pyfiglet
 from consolebar import ConsoleBar
 
