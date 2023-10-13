@@ -6,9 +6,6 @@ os.system("pip install pyfiglet")
 import pyfiglet
 from consolebar import ConsoleBar
 
-# import the local settings file
-import settings as hf
-
 
 # --------------------------------------------------------------------------------
 #  ____        _   _                    ____
@@ -28,6 +25,15 @@ class proj_info:
 
 
 # ---------------------------------------- BANNERS -------------------------------------------- #
+# clear function
+def clear():
+    os.system("cls")
+
+# break line
+break_line = '--------------------------------------------------------------------------------'
+def break_line_alt(dashes):
+    print('-' * dashes)
+
 # set up the banner class
 class banner:
     def __init__(self, name, header, subtitle, message):
@@ -36,12 +42,11 @@ class banner:
         self.subtitle = subtitle
         self.message = message
 
-
 # welcome banner
 welcome_banner = banner(
     name='Welcome Banner',
     header=proj_info.title,
-    subtitle=hf.break_line + '\n' + proj_info.title + ' | ' + 'Developed by: ' + proj_info.dev + '\n' + hf.break_line,
+    subtitle=break_line + '\n' + proj_info.title + ' | ' + 'Developed by: ' + proj_info.dev + '\n' + break_line,
     message=proj_info.description,
 )
 
@@ -53,16 +58,13 @@ small_banner = banner(
     message=proj_info.description,
 )
 
-
 def simple_banner():
     pyfiglet.print_figlet(proj_info.title, colors=banner_color)
     print(welcome_banner.subtitle)
 
-
 # banner colors
 banner_color = 'GREEN'
 banner_font = 'DOOM'
-
 
 # ---------------------------------------- WElCOME SCREEN -------------------------------------------- #
 # sets the welcome screen
@@ -76,8 +78,7 @@ def welcome_screen():
 
     pass_screen()
 
-    hf.clear()
-
+    clear()
 
 # -------------------------------------- TARGET ACQUISITION ------------------------------------------ #
 # defining the target class
@@ -89,28 +90,27 @@ class target:
         self.ip = socket.gethostbyname(hostname)
         self.fqdn = socket.getfqdn(hostname)
 
-
 # reconnaissance
 def recon_target():
     # acquire the target
     simple_banner()
     tgt_prompt = '\nEnter a hostname (e.g. abc.com): \n  >>  '
     tgt = input(tgt_prompt)
-    hf.clear()
+    clear()
 
     # starting port
     simple_banner()
     start_port_prompt = '\nEnter the starting port: '
     start_port = int(input(start_port_prompt + '\n  >>  '))
 
-    hf.clear()
+    clear()
 
     # ending port
     simple_banner()
     end_port_prompt = '\nEnter the ending port: '
     end_port = int(input(end_port_prompt + '\n  >>  '))
 
-    hf.clear()
+    clear()
 
     if start_port > end_port:
         recon_target()
@@ -124,7 +124,7 @@ def recon_target():
     '''
 
     sock_timeout = int(input(sock_timeout_prompt + '\n  >>  '))
-    hf.clear()
+    clear()
 
     def wait_screen():
         simple_banner()
@@ -135,7 +135,8 @@ def recon_target():
 
     # recon
     tgt = target(tgt, start_port, end_port)
-    hf.clear()
+    clear()
+    
     # ---------------------------------------- SCANNING ENGINE ------------------------------------------ #
     # scanning engine
     open_ports = []
@@ -173,10 +174,10 @@ def recon_target():
 
     # printing the report
     def report():
-        hf.clear()
+        clear()
 
         print("REPORT: ")
-        print(hf.break_line)
+        print(break_line)
 
         hostname_report = 'Target:           ' + tgt.hostname
         ip_report = 'IP address:       ' + tgt.ip
@@ -186,30 +187,28 @@ def recon_target():
         print('Port range:       ' + str(start_port) + ' - ' + str(end_port))
 
         print('\nPort       ' + 'Status    ' + 'Service ')
-        print(hf.break_line)
+        print(break_line)
 
         print(*open_ports, sep='\n')
 
-        print(hf.break_line)
+        print(break_line)
 
         # exit
         rerun = input('\n' * 3 + 'Press [ENTER] to run another scan, or type "exit" to quit.\n \n')
 
         if rerun == 'exit':
-            hf.clear()
+            clear()
             print('Thank you for using Python Scanner.')
             exit()
 
-        hf.clear()
+        clear()
 
     report()
-
 
 # main loop
 def main():
     recon_target()
     main()
-
 
 welcome_screen()
 
